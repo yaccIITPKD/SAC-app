@@ -1,10 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:sac_app/animations/slide_fade_anim.dart';
-import 'package:sac_app/provider/signin.dart';
-import 'package:sac_app/screens/main_screen.dart';
-import 'package:sac_app/widgets/themable_image.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sac_app/provider/constants.dart';
+import '../exports.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

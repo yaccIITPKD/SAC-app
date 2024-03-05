@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:sac_app/models/Project.dart';
-import 'package:sac_app/screens/project_screen.dart';
-import 'package:sac_app/util.dart';
-import 'package:url_launcher/url_launcher.dart';
+import '../exports.dart';
 
 class ProjectCard extends StatelessWidget {
   final Project? project;
@@ -131,7 +127,10 @@ class ProjectCard extends StatelessWidget {
                                                   project!.totalMembers)
                                               ? () {
                                                   // Just a SnackBar message for now
-                                                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Your request has been sent to the respective club Head.')));
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(const SnackBar(
+                                                          content: Text(
+                                                              'Your request has been sent to the respective club Head.')));
                                                 }
                                               : null,
                                           style: ElevatedButton.styleFrom(

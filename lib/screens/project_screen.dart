@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:sac_app/models/Project.dart';
-import 'package:sac_app/util.dart';
+import '../exports.dart';
 
 class ProjectScreen extends StatelessWidget {
   ProjectScreen({super.key});
@@ -11,7 +9,6 @@ class ProjectScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return (project != null)
         ? Scaffold(
             backgroundColor: Colors.white,
@@ -68,7 +65,7 @@ class ProjectScreen extends StatelessWidget {
                         decoration: const BoxDecoration(
                             border:
                                 Border(bottom: BorderSide(color: Colors.grey))),
-                        child:  Row(
+                        child: Row(
                           children: [
                             Expanded(
                               child: Column(
@@ -146,8 +143,8 @@ class ProjectScreen extends StatelessWidget {
                         decoration: const BoxDecoration(
                             border:
                                 Border(bottom: BorderSide(color: Colors.grey))),
-                        padding:
-                            const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 15),
                         width: MediaQuery.of(context).size.width,
                         constraints: const BoxConstraints(
                           maxHeight: 200,
@@ -175,7 +172,10 @@ class ProjectScreen extends StatelessWidget {
                         padding: EdgeInsets.symmetric(vertical: 10),
                         child: Column(
                           children: [
-                            const Text('Members',style: TextStyle(fontSize: 20),),
+                            const Text(
+                              'Members',
+                              style: TextStyle(fontSize: 20),
+                            ),
                             Card(
                               elevation: 0,
                               color: Colors.white,
@@ -185,23 +185,20 @@ class ProjectScreen extends StatelessWidget {
                                 height: 440,
                                 child: ListView.builder(
                                   itemCount: 1,
-                                  itemBuilder: (context,index) =>
-                                      Card(
-                                        child: Container(
-                                          height: 60,
-                                          child: const ListTile(
-                                            title: Text('Alonot'),
-                                            leading: Icon(Icons.account_box),
-                                          ),
-                                        ),
-                                      )
-                                  ,
+                                  itemBuilder: (context, index) => Card(
+                                    child: Container(
+                                      height: 60,
+                                      child: const ListTile(
+                                        title: Text('Alonot'),
+                                        leading: Icon(Icons.account_box),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
                             )
                           ],
                         ),
-
                       )
                     ],
                   ),

@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
+import '../exports.dart';
 
 class RegistrationScreen extends StatefulWidget {
-
   final String clubName;
-  const RegistrationScreen({required this.clubName,super.key});
+  const RegistrationScreen({required this.clubName, super.key});
 
   static const id = "registration_screen";
 
@@ -23,11 +22,21 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       ),
       body: ListView(
         children: [
-          StyledTextField(text: 'Name',),
-          StyledTextField(text: 'Email',),
-          StyledTextField(text: 'Batch',),
-          StyledTextField(text: 'Whatsapp number',),
-          StyledTextField(text: 'Link to Work related to club',),
+          StyledTextField(
+            text: 'Name',
+          ),
+          StyledTextField(
+            text: 'Email',
+          ),
+          StyledTextField(
+            text: 'Batch',
+          ),
+          StyledTextField(
+            text: 'Whatsapp number',
+          ),
+          StyledTextField(
+            text: 'Link to Work related to club',
+          ),
           const SizedBox(
             height: 20,
           ),
@@ -53,7 +62,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 }
 
 class StyledTextField extends StatelessWidget {
-
   final String text;
   const StyledTextField({
     required this.text,
@@ -71,7 +79,7 @@ class StyledTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
           ),
           hintText: text,
-            contentPadding: const EdgeInsets.all(16),
+          contentPadding: const EdgeInsets.all(16),
           filled: true,
         ),
       ),

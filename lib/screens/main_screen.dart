@@ -1,12 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:sac_app/screens/ongoing_project_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sac_app/screens/user_profile_screen.dart';
-import '../provider/theme_toggler.dart';
-import 'calender_screen.dart';
-import 'home_screen.dart';
-import 'login_screen.dart';
+import '../exports.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -23,8 +15,8 @@ class _HomeState extends State<Home> {
   final Map<int, Widget> bodyWidgets = {
     0: HomeScreen(),
     1: CalenderScreen(),
-    3: UserProfileScreen(),
     2: OngoingProjectScreen(),
+    3: UserProfileScreen(),
   };
 
   @override

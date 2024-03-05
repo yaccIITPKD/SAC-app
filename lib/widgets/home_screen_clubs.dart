@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:sac_app/screens/club_info_screen.dart';
+import '../exports.dart';
 
 class ClubCard extends StatelessWidget {
   final String clubName;
@@ -9,13 +8,14 @@ class ClubCard extends StatelessWidget {
   final String? headContactNum;
   final String clubEmail;
 
-  const ClubCard(
-      {required this.clubName,
-      required this.clubIntro,
-      required this.imagePath,
-        required this.clubHead,
-        required this.clubEmail,
-        this.headContactNum,});
+  const ClubCard({
+    required this.clubName,
+    required this.clubIntro,
+    required this.imagePath,
+    required this.clubHead,
+    required this.clubEmail,
+    this.headContactNum,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +24,13 @@ class ClubCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>
-                ClubScreen(clubName: clubName, clubImage: imagePath, clubHead: clubHead,clubEmail: clubEmail, headContactNum: headContactNum,),
+            builder: (context) => ClubScreen(
+              clubName: clubName,
+              clubImage: imagePath,
+              clubHead: clubHead,
+              clubEmail: clubEmail,
+              headContactNum: headContactNum,
+            ),
           ),
         );
       },
@@ -42,7 +47,9 @@ class ClubCard extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   // child: Image.asset(imagePath, alignment: Alignment.center,),
-                  child: Image(image: AssetImage(imagePath),),
+                  child: Image(
+                    image: AssetImage(imagePath),
+                  ),
                 ),
               ),
               Text(

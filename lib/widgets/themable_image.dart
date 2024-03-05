@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import '../exports.dart';
 
 class ThemableImage extends StatelessWidget {
   final String lightModeImagePath;

@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:sac_app/screens/register_in_club_screen.dart';
+import '../exports.dart';
 
 class ClubScreen extends StatelessWidget {
-
   static String id = "ClubScreen";
 
   // const ClubScreen({super.key});
