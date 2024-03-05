@@ -1,16 +1,21 @@
 import '../exports.dart';
 
+// This is the skeleton of our app
+// Here we divide the app into 3 basic parts
+// 1) App bar 2) Body 3) Bottom Navigation bar
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
   static const id = "main_screen";
+
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  int currentPageIndex = 0;
   bool isDark = false;
+  int currentPageIndex = 0;
 
   final Map<int, Widget> bodyWidgets = {
     0: HomeScreen(),
@@ -44,7 +49,6 @@ class _HomeState extends State<Home> {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text("SAC"),
           actions: [
             Tooltip(
               message: 'Change brightness mode',
@@ -54,7 +58,8 @@ class _HomeState extends State<Home> {
                   setState(() {
                     isDark = !isDark;
                   });
-                  Provider.of<ThemeModel>(context, listen: false).toggleTheme();
+                  Provider.of<GlobalDataProvider>(context, listen: false)
+                      .toggleTheme();
                 },
                 icon: const Icon(Icons.wb_sunny_outlined),
                 selectedIcon: const Icon(Icons.brightness_2_outlined),

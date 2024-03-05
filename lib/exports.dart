@@ -9,9 +9,9 @@ export 'dart:io';
 export 'package:table_calendar/table_calendar.dart';
 export 'package:path_provider/path_provider.dart';
 
-export 'provider/theme_toggler.dart';
-export 'provider/constants.dart';
-export 'provider/signin.dart';
+export 'provider/main.dart';
+export 'constants.dart';
+export 'api/signin.dart';
 
 export 'screens/new_project_screen.dart';
 export 'screens/ongoing_project_screen.dart';

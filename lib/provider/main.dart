@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ThemeModel extends ChangeNotifier {
+class GlobalDataProvider extends ChangeNotifier {
   ThemeData currentTheme = ThemeData.light();
 
   void toggleTheme() {
