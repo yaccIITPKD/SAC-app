@@ -66,9 +66,7 @@ class ClubCard extends StatelessWidget {
                   fontSize: 13,
                 ),
               ),
-              const SizedBox(
-                height: 8,
-              )
+              const SizedBox(height: 8)
             ],
           ),
         ),

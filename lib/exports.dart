@@ -13,21 +13,22 @@ export 'provider/main.dart';
 export 'constants.dart';
 export 'api/signin.dart';
 
-export 'screens/new_project_screen.dart';
-export 'screens/ongoing_project_screen.dart';
+export 'screens/add_project_screen.dart';
+export 'screens/project_info_screen.dart';
 export 'screens/project_screen.dart';
-export 'screens/main_screen.dart';
-export 'screens/club_info_screen.dart';
-export 'screens/register_in_club_screen.dart';
+export 'screens/main.dart';
+export 'screens/club_screen.dart';
+export 'screens/club_registration.dart';
 export 'screens/calender_screen.dart';
 export 'screens/home_screen.dart';
-export 'screens/login_screen.dart';
-export 'screens/user_profile_screen.dart';
+export 'screens/settings_screen.dart';
 
-export 'widgets/home_screen_clubs.dart';
+export 'widgets/club_card.dart';
 export 'widgets/themable_image.dart';
 export 'widgets/project_card.dart';
 export 'widgets/profile_tile.dart';
+export 'widgets/nav_bar_destination.dart';
+export 'widgets/announcement_card.dart';
 
 export 'models/Project.dart';
 
