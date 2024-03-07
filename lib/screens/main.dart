@@ -26,81 +26,83 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        // ---------------------------------------
-        // App Bar
-        // The layout of app bar is like this
-        // A Row -> Inside it a logo, column -> Inside it 2 texts
-        // Actions in which theme change symbol is there
-        //---------------------------------------
-        appBar: AppBar(
-          title: const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              // Image is made flexible so app wouldn't crash
-              Flexible(
-                child: Image(
-                  image: AssetImage("assets/logo/light.png"),
-                  height: 60,
-                  width: 50,
+    return Scaffold(
+      // ---------------------------------------
+      // App Bar
+      // The layout of app bar is like this
+      // A Row -> Inside it a logo, column -> Inside it 2 texts
+      // Actions in which theme change symbol is there
+      //---------------------------------------
+      appBar: AppBar(
+        title: const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            // Image is made flexible so app wouldn't crash
+            Flexible(
+              child: Image(
+                image: AssetImage("assets/logo/light.png"),
+                height: 60,
+                width: 50,
+              ),
+            ),
+            SizedBox(width: 15),
+            // If app is crashing here, wrap column with flexible widget
+            Column(
+              children: <Widget>[
+                Text(
+                  "Students Affairs Council",
+                  style: TextStyle(fontSize: 15),
                 ),
-              ),
-              SizedBox(width: 15),
-              // If app is crashing here, wrap column with flexible widget
-              Column(
-                children: <Widget>[
-                  Text(
-                    "Students Affairs Council",
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  Text(
-                    "IIT, Palakkad",
-                    style: TextStyle(fontSize: 15),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          actions: [
-            // The theme of the app is updated using provider package
-            IconButton(
-              isSelected: isDark,
-              onPressed: () {
-                setState(() {
-                  isDark = !isDark;
-                });
-                Provider.of<GlobalDataProvider>(context, listen: false)
-                    .toggleTheme();
-              },
-              icon: const Icon(Icons.wb_sunny_outlined),
-              selectedIcon: const Icon(Icons.brightness_2_outlined),
+                Text(
+                  "IIT, Palakkad",
+                  style: TextStyle(fontSize: 15),
+                ),
+              ],
             ),
           ],
         ),
-        //---------------------------------------
-        // Body
-        //---------------------------------------
-        body: bodyWidgets[currentPageIndex],
-        //---------------------------------------
-        // Bottom Navigation bar
-        //---------------------------------------
-        bottomNavigationBar: NavigationBar(
-          indicatorColor: Colors.amber,
-          backgroundColor: const Color(0xFFF38221),
-          onDestinationSelected: (int index) {
-            setState(() {
-              currentPageIndex = index;
-            });
-          },
-          selectedIndex: currentPageIndex,
-          destinations: const <Widget>[
-            StyledNavDest(label: 'Home', icon: Icons.home),
-            StyledNavDest(label: 'Events', icon: Icons.calendar_month),
-            StyledNavDest(label: 'Projects', icon: Icons.lightbulb),
-            StyledNavDest(label: 'Settings', icon: Icons.person),
-          ],
-        ),
+        actions: [
+          // The theme of the app is updated using provider package
+          IconButton(
+            isSelected: isDark,
+            onPressed: () {
+              setState(() {
+                isDark = !isDark;
+              });
+              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+            },
+            icon: const Icon(Icons.wb_sunny_outlined),
+            selectedIcon: const Icon(Icons.brightness_2_outlined),
+          ),
+        ],
+      ),
+      //---------------------------------------
+      // Body
+      //---------------------------------------
+      body: bodyWidgets[currentPageIndex],
+      //---------------------------------------
+      // Bottom Navigation bar
+      //---------------------------------------
+      bottomNavigationBar: NavigationBar(
+        height: 60,
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+        indicatorColor: Provider.of<ThemeProvider>(context, listen: false)
+            .getNavigationBarIndicatorColor(),
+        backgroundColor: Provider.of<ThemeProvider>(context, listen: false)
+            .currentTheme
+            .primaryColor,
+        onDestinationSelected: (int index) {
+          setState(() {
+            currentPageIndex = index;
+          });
+        },
+        selectedIndex: currentPageIndex,
+        destinations: const <Widget>[
+          StyledNavDest(label: 'Home', icon: Icons.home),
+          StyledNavDest(label: 'Events', icon: Icons.calendar_month),
+          StyledNavDest(label: 'Projects', icon: Icons.lightbulb),
+          StyledNavDest(label: 'Settings', icon: Icons.person),
+        ],
       ),
     );
   }

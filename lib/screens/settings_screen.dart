@@ -1,3 +1,5 @@
+import 'package:sac_app/widgets/sac_logo_text.dart';
+
 import '../exports.dart';
 
 class UserProfileScreen extends StatefulWidget {
@@ -11,25 +13,6 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   String name = 'unknown';
   String email = 'unknown@email.com';
   bool isLoggedIn = false;
-
-  final List<String> clubHeadOptions = [
-    'Club Members',
-    'Members Requests',
-    'Make Announcements',
-    'Data Changes',
-    'Edit Personal Info',
-    'App Preferences'
-  ];
-
-  final List<String> memberOptions = [
-    'Joined Club',
-    'Pending Requests',
-    'Open Announcements',
-    'Mess Menu',
-    'Bus Timings',
-    'Edit Info',
-    'App Preferences'
-  ];
 
   @override
   void initState() {
@@ -53,17 +36,182 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
 
   Widget _buildUserLogin() {
     return Center(
-      child: OutlinedButton.icon(
-        onPressed: () {
-          _signIn(context);
-        },
-        icon: Image.asset(
-          googleImagePath,
-          height: 20,
-        ),
-        label: const Text(googleSignIn),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SACLogoText(
+            width: 200,
+            height: 250,
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          OutlinedButton.icon(
+            onPressed: () {
+              _signIn(context);
+            },
+            icon: Image.asset(
+              googleImagePath,
+              height: 20,
+            ),
+            label: const Text(googleSignIn),
+          ),
+        ],
       ),
     );
+  }
+
+  Widget _buildUserProfile() {
+    List<PrefTile> options = _getDetails();
+    options.addAll(_getClubHeadPreferences());
+    Map groupedItems = groupBy(options, (option) => option.category);
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(height: 20),
+          ProfileTile(
+            userEmail: email,
+            userName: name,
+          ),
+          const SizedBox(height: 20),
+          PreferenceListView(groupedItems: groupedItems),
+        ],
+      ),
+    );
+  }
+
+  List<PrefTile> _getClubHeadPreferences() {
+    return [
+      PrefTile(
+        title: 'Club Members',
+        category: settingOptions,
+        icon: Icons.group_outlined,
+      ),
+      PrefTile(
+        title: 'Static Data Change',
+        category: settingOptions,
+        icon: Icons.dashboard_customize_outlined,
+      ),
+      PrefTile(
+        title: 'Member Requests',
+        category: settingOptions,
+        icon: Icons.group_add_outlined,
+      ),
+      PrefTile(
+        title: 'Make Announcments',
+        category: settingOptions,
+        icon: Icons.volume_up_outlined,
+      ),
+      PrefTile(
+        title: 'Settings',
+        category: settingOptions,
+        icon: Icons.settings_outlined,
+      ),
+      PrefTile(
+          title: 'Log Out',
+          category: settingOptions,
+          icon: Icons.logout_outlined,
+          onTap: () async {
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            await prefs.setBool('isLoggedIn', false);
+            await GoogleSignInApi.logout();
+
+            setState(() {
+              isLoggedIn = false;
+            });
+          }),
+    ];
+  }
+
+  List<PrefTile> _getMemberPreferences() {
+    return [
+      PrefTile(
+        title: 'My Clubs',
+        category: settingOptions,
+        icon: Icons.local_library_outlined,
+      ),
+      PrefTile(
+        title: 'Join Clubs',
+        category: settingOptions,
+        icon: Icons.add,
+      ),
+      PrefTile(
+        title: 'Club Request Status',
+        category: settingOptions,
+        icon: Icons.group_add_outlined,
+      ),
+      PrefTile(
+        title: 'Check Announcments',
+        category: settingOptions,
+        icon: Icons.volume_up_outlined,
+      ),
+      PrefTile(
+        title: 'Settings',
+        category: settingOptions,
+        icon: Icons.settings_outlined,
+      ),
+      PrefTile(
+          title: 'Log Out',
+          category: settingOptions,
+          icon: Icons.logout_outlined,
+          onTap: () async {
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            await prefs.setBool('isLoggedIn', false);
+            await GoogleSignInApi.logout();
+
+            setState(() {
+              isLoggedIn = false;
+            });
+          }),
+    ];
+  }
+
+  List<PrefTile> _getDetails() {
+    return [
+      PrefTile(
+        title: userName,
+        category: personalInfo,
+        subtitle: 'Unknown User',
+      ),
+      PrefTile(
+        title: userRollId,
+        category: personalInfo,
+        subtitle: '000000000',
+      ),
+      PrefTile(
+          title: userMail,
+          category: personalInfo,
+          subtitle: 'unknowm@email.com'),
+      PrefTile(
+          title: userPhone,
+          category: personalInfo,
+          subtitle: '+91 xxxxx xxxxx'),
+      // Not Important Personel Info
+      // Ui Purpose
+      PrefTile(
+        title: userDOb,
+        category: personalInfo,
+        subtitle: 'xx-xx-xxxx',
+      ),
+      //College Info of User
+      //Can be used for autofil of Club Joining Forum
+      PrefTile(
+        title: userRollId,
+        category: collegeInfo,
+        subtitle: '000000000',
+      ),
+      PrefTile(
+          title: userDepartment,
+          category: collegeInfo,
+          subtitle: 'Computer Science of Engneering'),
+      PrefTile(
+        title: userBatch,
+        category: collegeInfo,
+        subtitle: 'B2022',
+      ),
+    ];
   }
 
   Future<void> _signIn(BuildContext context) async {
@@ -83,91 +231,53 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       });
     }
   }
-
-  Widget _buildUserProfile() {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          ProfileTile(
-            userEmail: email,
-            userName: name,
-            width: 400,
-          ),
-          _buildDetails(),
-          _buildSectionHeader('Options'),
-          _buildOptions(context, memberOptions),
-          ListTile(
-            title: Text('Log Out'),
-            onTap: () async {
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('isLoggedIn', false);
-              await GoogleSignInApi.logout();
-
-              setState(() {
-                isLoggedIn = false;
-              });
-            },
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget _buildDetails() {
-    return Column(
-      children: [
-        _buildSectionHeader('Personal Info'),
-        _buildDetailRow('Name', name),
-        _buildDetailRow('Roll No.', ''),
-        _buildDetailRow('Email', email),
-        _buildDetailRow('Phone No.', ''),
-        _buildSectionHeader('College Info'),
-        _buildDetailRow('Department', ''),
-        _buildDetailRow('Semester', ''),
-        _buildDetailRow('Academic Year', ''),
-        _buildSectionHeader('About'),
-        _buildDetailRow('D.O.B', ''),
-        _buildDetailRow('Gender', ''),
-      ],
-    );
-  }
-
-  Widget _buildSectionHeader(String headerText) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Text(
-        headerText,
-        style: const TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 18.0,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildDetailRow(String title, String detail) {
-    return ListTile(
-      title: Text(title),
-      subtitle: Text(detail),
-    );
-  }
-
-  Widget _buildOptions(BuildContext context, List<String> options) {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: options.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(options[index]),
-          onTap: () {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text('Need to implement'),
-              duration: Duration(milliseconds: 200),
-            ));
-          },
-        );
-      },
-    );
-  }
 }
+
+// Util class To Fetch UserInfo from HTTP request(backend)
+/*class Profile {
+  final String userId;
+  Profile({required this.userId});
+  
+  // Not yet connected to backend
+  List<PrefTile> getDetails(){
+    return [
+      PrefTile(
+        title: userName, 
+        category: personalInfo, 
+        detail: 'Unknown User'),
+      PrefTile(
+        title: userRollId, 
+        category: personalInfo, 
+        detail: '000000000'),
+      PrefTile(
+        title: userMail, 
+        category: personalInfo, 
+        detail: 'unknowm@email.com'),
+      // Not Important Personel Info
+      // Ui Purpose
+      PrefTile(
+        title: userDOb, 
+        category: personalInfo, 
+        detail: 'xx-xx-xxxx'),
+      PrefTile(
+        title: userGender, 
+        category: personalInfo, 
+        detail: 'Male'),
+      //College Info of User
+      //Can be used for autofil of Club Joining Forum
+      PrefTile(
+        title: userRollId, 
+        category: collegeInfo, 
+        detail: '000000000'),
+      PrefTile(
+        title: userDepartment, 
+        category: collegeInfo, 
+        detail: 'Computer Science of Engneering'),
+      PrefTile(
+        title: userBatch, 
+        category: collegeInfo, 
+        detail: 'B2022'),
+      ];
+  }
+
+} */

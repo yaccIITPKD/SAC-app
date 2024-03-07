@@ -18,26 +18,22 @@ class ProfileTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double widgetWidth = width ?? 300;
-    double size = widgetWidth / 8;
-    return Container(
+    double size = widgetWidth / 3;
+    return SizedBox(
       width: widgetWidth,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ProfileImage(
               size: size,
               userName: userName,
               userImage: userImage,
             ),
-            const SizedBox(width: 20),
-            Column(
-              children: [
-                Text(userName ?? ''),
-                Text(userEmail, style: TextStyle(fontSize: 12))
-              ],
-            )
+            const SizedBox(height: 20),
+            Text(userName ?? ''),
+            Text(userEmail, style: const TextStyle(fontSize: 12)),
           ],
         ),
       ),
@@ -88,13 +84,17 @@ class ProfileImage extends StatelessWidget {
         : CircleAvatar(
             radius: radius,
             backgroundColor: Colors.amber,
-            child: SizedBox(
-              height: (size ?? 24) - 15,
-              width: (size ?? 24) - 15,
-              child: FittedBox(
-                child: Text(intial),
+            child: FittedBox(
+                child: SizedBox(
+              height: size,
+              width: size,
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: FittedBox(
+                  child: Text(intial),
+                ),
               ),
-            ),
+            )),
           );
   }
 
