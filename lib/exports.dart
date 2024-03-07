@@ -35,3 +35,5 @@ export 'models/Project.dart';
 export 'animations/slide_fade_anim.dart';
 
 export 'util.dart';
+
+export 'widgets/styled_text_field.dart';
