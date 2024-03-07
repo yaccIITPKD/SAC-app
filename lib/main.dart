@@ -4,7 +4,7 @@ import '../exports.dart';
 void main() {
   runApp(
     ChangeNotifierProvider(
-      create: (_) => GlobalDataProvider(),
+      create: (_) => ThemeProvider(),
       child: const MyApp(),
     ),
   );
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'SAC',
-      theme: Provider.of<GlobalDataProvider>(context).currentTheme,
+      theme: Provider.of<ThemeProvider>(context).currentTheme,
       initialRoute: Home.id,
       routes: {
         Home.id: (context) => Home(),
