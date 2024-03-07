@@ -21,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
       "World",
       "Hi",
     ];
+    // the data about clubs
     _clubs = [
       [
         "YACC",
@@ -62,6 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.horizontal,
               children: <Widget>[
                 for (int i = 0; i < _clubs.length; i++)
+                  // customised card widget to display different clubs
                   ClubCard(
                     clubName: _clubs[i][0],
                     clubIntro: _clubs[i][1],

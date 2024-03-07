@@ -1,9 +1,12 @@
 import '../exports.dart';
+// The screen which displays information about a club
+// Only contact details and minor data available right now
 
 class ClubScreen extends StatelessWidget {
   static String id = "ClubScreen";
 
   // const ClubScreen({super.key});
+  // Take important information from previous screen
   ClubScreen({
     required this.clubName,
     required this.clubImage,

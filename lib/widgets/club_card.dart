@@ -1,6 +1,9 @@
 import '../exports.dart';
 
+// This widget is customized to display different clubs on the homescreen
+
 class ClubCard extends StatelessWidget {
+  // Takes the following data
   final String clubName;
   final String clubIntro;
   final String imagePath;
@@ -19,6 +22,7 @@ class ClubCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // on clicking it navigates to the respective club screen
     return GestureDetector(
       onTap: () {
         Navigator.push(
