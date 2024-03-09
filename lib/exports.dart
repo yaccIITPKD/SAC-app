@@ -37,3 +37,5 @@ export 'models/Project.dart';
 export 'models/pref_tile.dart';
 
 export 'util.dart';
+
+export 'widgets/styled_text_field.dart';

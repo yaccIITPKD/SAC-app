@@ -1,6 +1,7 @@
 import '../exports.dart';
-
+// Registration page for clubs
 class RegistrationScreen extends StatefulWidget {
+  // takes clubName from previous screen
   final String clubName;
   const RegistrationScreen({required this.clubName, super.key});
 
@@ -22,6 +23,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       ),
       body: ListView(
         children: [
+          // customized widgets for different field (other fields from backend can also be added in same way)
           StyledTextField(
             text: 'Name',
           ),
@@ -40,6 +42,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           const SizedBox(
             height: 20,
           ),
+          // register button- requires backend to show functionality
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: SizedBox(
@@ -61,28 +64,3 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }
 }
 
-class StyledTextField extends StatelessWidget {
-  final String text;
-  const StyledTextField({
-    required this.text,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15),
-      child: TextField(
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-            borderRadius: BorderRadius.circular(30),
-          ),
-          hintText: text,
-          contentPadding: const EdgeInsets.all(16),
-          filled: true,
-        ),
-      ),
-    );
-  }
-}
