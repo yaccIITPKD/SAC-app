@@ -13,148 +13,135 @@ class ProjectCard extends StatelessWidget {
     return (project != null)
         ? Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10),
-            child: Container(
-              decoration: const BoxDecoration(boxShadow: [
-                BoxShadow(blurRadius: 7, color: Colors.grey, spreadRadius: -1)
-              ]),
+            child: SizedBox(
               width: double.maxFinite,
               height: project!.techStack.isNotEmpty ? 200 : 180,
-              child: Card(
-                elevation: 0,
-                color: Colors.white,
-                shadowColor: Colors.grey.shade500,
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8))),
+              child: ClickableCard(
+                onTap: () {
+                  currentProject = project!;
+                  Navigator.pushNamed(context, ProjectScreen.id);
+                },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
                       Expanded(
                         flex: project!.techStack.isNotEmpty ? 2 : 3,
-                        child: GestureDetector(
-                          onTap: () {
-                            currentProject = project!;
-                            Navigator.pushNamed(context, ProjectScreen.id);
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                border: Border(
-                                    bottom: BorderSide(
-                                        color: Colors.grey.shade500))),
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.grey),
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(10)),
-                                      ),
-                                      height: 50,
-                                      // color: Colors.red,
-                                      child: Image(
-                                        fit: BoxFit.contain,
-                                        image: AssetImage(project!.logo),
-                                      ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  bottom:
+                                      BorderSide(color: Colors.grey.shade500))),
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.grey),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10)),
+                                    ),
+                                    height: 50,
+                                    // color: Colors.red,
+                                    child: Image(
+                                      fit: BoxFit.contain,
+                                      image: AssetImage(project!.logo),
                                     ),
                                   ),
                                 ),
-                                Expanded(
-                                  flex: 3,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            project!.clubName,
-                                            style:
-                                                const TextStyle(fontSize: 11),
-                                          ),
+                              ),
+                              Expanded(
+                                flex: 3,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          project!.clubName,
+                                          style: const TextStyle(fontSize: 11),
                                         ),
-                                        Expanded(
-                                          child: Text(
-                                            project!.title,
-                                            style: TextStyle(
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.bold),
-                                          ),
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          project!.title,
+                                          style: TextStyle(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.bold),
                                         ),
-                                        Expanded(
-                                          child: Container(
-                                            height: 5,
-                                            width: 70,
-                                            // padding: const EdgeInsets.symmetric(
-                                            //     horizontal: 4, vertical: 0),
-                                            decoration: BoxDecoration(
-                                                color: statusColor[
-                                                    project!.status],
-                                                borderRadius:
-                                                    BorderRadius.circular(4)),
-                                            child: Center(
-                                              child: Text(
-                                                project!.status,
-                                                style: TextStyle(
-                                                  fontSize: 11,
-                                                ),
+                                      ),
+                                      Expanded(
+                                        child: Container(
+                                          height: 5,
+                                          width: 70,
+                                          // padding: const EdgeInsets.symmetric(
+                                          //     horizontal: 4, vertical: 0),
+                                          decoration: BoxDecoration(
+                                              color:
+                                                  statusColor[project!.status],
+                                              borderRadius:
+                                                  BorderRadius.circular(4)),
+                                          child: Center(
+                                            child: Text(
+                                              project!.status,
+                                              style: TextStyle(
+                                                fontSize: 11,
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 2,
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Expanded(
-                                        child: ElevatedButton(
-                                          onPressed: (project!.currentMembers <
-                                                  project!.totalMembers)
-                                              ? () {
-                                                  // Just a SnackBar message for now
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(const SnackBar(
-                                                          content: Text(
-                                                              'Your request has been sent to the respective club Head.')));
-                                                }
-                                              : null,
-                                          style: ElevatedButton.styleFrom(
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5)),
-                                              backgroundColor: Colors.white,
-                                              shadowColor: Colors.grey),
-                                          child: const Row(
-                                            children: [
-                                              Icon(Icons.add),
-                                              Text('JOIN')
-                                            ],
-                                          ),
-                                        ),
                                       ),
-                                      Expanded(
-                                          child: Text(
-                                              "Members : ${project!.currentMembers}/${project!.totalMembers}"))
                                     ],
                                   ),
-                                )
-                              ],
-                            ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Expanded(
+                                      child: ElevatedButton(
+                                        onPressed: (project!.currentMembers <
+                                                project!.totalMembers)
+                                            ? () {
+                                                // Just a SnackBar message for now
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(const SnackBar(
+                                                        content: Text(
+                                                            'Your request has been sent to the respective club Head.')));
+                                              }
+                                            : null,
+                                        style: ElevatedButton.styleFrom(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5))),
+                                        child: const Row(
+                                          children: [
+                                            Icon(Icons.add),
+                                            Text('JOIN')
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                        child: Text(
+                                            "Members : ${project!.currentMembers}/${project!.totalMembers}"))
+                                  ],
+                                ),
+                              )
+                            ],
                           ),
                         ),
                       ),

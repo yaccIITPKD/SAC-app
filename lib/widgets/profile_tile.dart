@@ -1,39 +1,45 @@
 import '../exports.dart';
 
 class ProfileTile extends StatelessWidget {
-  final double? height;
-  final double? width;
+  final double width;
   final String? userName;
   final String? userImage;
   final String userEmail;
 
   const ProfileTile(
       {super.key,
-      this.height,
-      this.width,
+      this.width = 250,
       this.userName,
       this.userImage,
       required this.userEmail});
 
   @override
   Widget build(BuildContext context) {
-    double widgetWidth = width ?? 300;
-    double size = widgetWidth / 3;
+    double size = width * 0.4;
     return SizedBox(
-      width: widgetWidth,
+      width: width,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ProfileImage(
               size: size,
               userName: userName,
               userImage: userImage,
             ),
-            const SizedBox(height: 20),
-            Text(userName ?? ''),
-            Text(userEmail, style: const TextStyle(fontSize: 12)),
+            const SizedBox(height: 25),
+            FittedBox(child: Text(userName ?? '')),
+            const SizedBox(height: 1),
+            FittedBox(
+              child: Text(
+                userEmail,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
           ],
         ),
       ),

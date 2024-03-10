@@ -5,7 +5,8 @@ class AnnouncementCard extends StatelessWidget {
   final String content;
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return ClickableCard(
+      onTap: () => debugPrint('Not implemented'),
       margin: const EdgeInsets.all(2),
       child: Padding(
         padding: const EdgeInsets.all(8),

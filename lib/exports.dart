@@ -11,7 +11,6 @@ export 'package:path_provider/path_provider.dart';
 export 'package:collection/collection.dart';
 
 export 'provider/main.dart';
-export 'provider/theme_provider.dart';
 export 'constants.dart';
 export 'api/signin.dart';
 
@@ -32,10 +31,13 @@ export 'widgets/profile_tile.dart';
 export 'widgets/nav_bar_destination.dart';
 export 'widgets/announcement_card.dart';
 export 'widgets/pref_info_list.dart';
+export 'widgets/calender_widget.dart';
+export 'widgets/cards.dart';
 
 export 'models/Project.dart';
 export 'models/pref_tile.dart';
 
 export 'util.dart';
+export 'utils.dart';
 
 export 'widgets/styled_text_field.dart';

@@ -39,10 +39,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SACLogoText(
-            width: 200,
-            height: 250,
-          ),
+          const SACLogoText(width: 250),
           const SizedBox(
             height: 30,
           ),

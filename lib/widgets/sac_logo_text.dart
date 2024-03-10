@@ -1,16 +1,14 @@
 import '../exports.dart';
 
 class SACLogoText extends StatelessWidget {
-  final double? width;
-  final double? height;
-  const SACLogoText({super.key, this.width, this.height});
+  final double width;
+  const SACLogoText({Key? key, this.width = 250}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    Color accent = isDarkMode ? primaryColorNight : primaryColor;
+    Color accent = ThemeUtils.getColorScheme(context).primary;
     return SizedBox(
-      height: height,
+      height: width + 50,
       width: width,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -19,8 +17,8 @@ class SACLogoText extends StatelessWidget {
           ThemableImage(
             lightModeImagePath: lightLogoPath,
             darkModeImagePath: darkLogoPath,
-            width: (width ?? 200) * 0.75,
-            height: (width ?? 200) * 0.75,
+            width: width * 0.8,
+            height: width * 0.8,
           ),
           const Expanded(child: SizedBox()),
           const FittedBox(
