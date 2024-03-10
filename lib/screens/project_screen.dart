@@ -11,7 +11,6 @@ class ProjectScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return (project != null)
         ? Scaffold(
-            backgroundColor: Colors.white,
             body: Column(
               children: [
                 Expanded(

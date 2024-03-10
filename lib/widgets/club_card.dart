@@ -12,18 +12,19 @@ class ClubCard extends StatelessWidget {
   final String clubEmail;
 
   const ClubCard({
+    Key? key,
     required this.clubName,
     required this.clubIntro,
     required this.imagePath,
     required this.clubHead,
     required this.clubEmail,
     this.headContactNum,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // on clicking it navigates to the respective club screen
-    return GestureDetector(
+    return ClickableCard(
       onTap: () {
         Navigator.push(
           context,
@@ -38,42 +39,39 @@ class ClubCard extends StatelessWidget {
           ),
         );
       },
-      child: SizedBox(
-        width: 220,
-        child: Card(
-          // color: const Color(0xFFFFF5E0),
-          margin: const EdgeInsets.all(10),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  // child: Image.asset(imagePath, alignment: Alignment.center,),
-                  child: Image(
-                    image: AssetImage(imagePath),
-                  ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              // child: Image.asset(imagePath, alignment: Alignment.center,),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(15)),
+                child: Image(
+                  image: AssetImage(imagePath),
+                  fit: BoxFit.fill,
                 ),
               ),
-              Text(
-                clubName,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w800,
-                  fontSize: 20,
-                ),
-              ),
-              Text(
-                clubIntro,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 13,
-                ),
-              ),
-              const SizedBox(height: 8)
-            ],
+            ),
           ),
-        ),
+          Text(
+            clubName,
+            style: const TextStyle(
+              fontWeight: FontWeight.w800,
+              fontSize: 20,
+            ),
+          ),
+          Text(
+            clubIntro,
+            style: const TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 13,
+            ),
+          ),
+          const SizedBox(height: 8)
+        ],
       ),
     );
   }

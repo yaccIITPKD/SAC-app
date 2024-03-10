@@ -8,6 +8,7 @@ class PreferenceListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color textColor = ThemeUtils.getColorScheme(context).primary;
     return ListView.builder(
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
@@ -18,8 +19,7 @@ class PreferenceListView extends StatelessWidget {
 
         return Padding(
           padding: const EdgeInsets.all(5),
-          child: Card(
-            elevation: 2,
+          child: FilledCard(
             child: Padding(
               padding: const EdgeInsets.all(15),
               child: Column(
@@ -29,9 +29,7 @@ class PreferenceListView extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color:
-                              Provider.of<ThemeProvider>(context, listen: true)
-                                  .getAccentColor())),
+                          color: textColor)),
                   const SizedBox(height: 6),
                   ListView.builder(
                     shrinkWrap: true,
@@ -76,21 +74,18 @@ class InfoTile extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 2),
+        const SizedBox(height: 3),
         Text(
           title,
-          style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+          style: ThemeUtils.getTheme(context).textTheme.labelLarge,
           textAlign: TextAlign.start,
         ),
-        Padding(
-            padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-            child: Text(
-              subtitle,
-              style:
-                  const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
-              textAlign: TextAlign.start,
-            )),
-        const SizedBox(height: 2)
+        Text(
+          subtitle,
+          style: ThemeUtils.getTheme(context).textTheme.bodyLarge,
+          textAlign: TextAlign.start,
+        ),
+        const SizedBox(height: 4)
       ],
     );
   }

@@ -30,7 +30,17 @@ class ClubScreen extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: ListView(
           children: [
-            Image.asset(clubImage),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(60, 30, 60, 30),
+              child: Card(
+                elevation: 0,
+                clipBehavior: Clip.antiAlias,
+                child: Image.asset(
+                  clubImage,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
             Text(
               "Club head:\n$clubHead",
               style: TextStyle(fontSize: 16),

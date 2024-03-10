@@ -15,8 +15,8 @@ class ThemableImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    String imagePath = isDarkMode ? darkModeImagePath : lightModeImagePath;
+    String imagePath =
+        ThemeUtils.isDarkMode(context) ? darkModeImagePath : lightModeImagePath;
 
     return Image.asset(
       imagePath,

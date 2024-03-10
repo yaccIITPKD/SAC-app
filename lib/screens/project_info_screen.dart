@@ -86,8 +86,6 @@ class _OngoingProjectScreenState extends State<OngoingProjectScreen> {
                       EdgeInsets.symmetric(horizontal: 10)),
                   leading: Icon(Icons.search),
                   elevation: MaterialStateProperty.all<double>(2),
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.grey.shade100),
                   controller: searchController,
                   onSubmitted: (String val) {
                     searchedFor(val);
@@ -114,7 +112,6 @@ class _OngoingProjectScreenState extends State<OngoingProjectScreen> {
                             padding: EdgeInsets.symmetric(horizontal: 5),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(3)),
-                            backgroundColor: Colors.white,
                             elevation: 0),
                         //Elevated Button Background
                         onPressed: () {},

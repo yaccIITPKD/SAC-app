@@ -93,7 +93,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
       ),
       body: Column(
         children: [
-          TableCalendar(
+          CalenderWidget(
             firstDay: DateTime.utc(2022, 1, 1),
             lastDay: DateTime.utc(2030, 12, 31),
             focusedDay: _focusedDay,
@@ -106,49 +106,6 @@ class _CalenderScreenState extends State<CalenderScreen> {
                 _focusedDay = focusedDay;
               });
             },
-            calendarFormat: CalendarFormat.month,
-            headerStyle: HeaderStyle(
-              formatButtonVisible: false,
-              titleCentered: true,
-              titleTextStyle: TextStyle(fontSize: 20.0),
-            ),
-            daysOfWeekStyle: DaysOfWeekStyle(
-              weekendStyle: TextStyle(
-                  color: Colors
-                      .red), // Change color of Saturday and Sunday letters
-            ),
-            calendarBuilders: CalendarBuilders(
-              todayBuilder: (context, date, _) {
-                // Custom styling for specific dates
-                if (date.weekday == DateTime.saturday ||
-                    date.weekday == DateTime.sunday) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.red.withOpacity(0.5),
-                    ),
-                    child: Center(
-                      child: Text(
-                        '${date.day}',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  );
-                } else {
-                  return Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.transparent,
-                    ),
-                    child: Center(
-                      child: Text(
-                        '${date.day}',
-                      ),
-                    ),
-                  );
-                }
-              },
-            ),
           ),
           Expanded(
             child: ListView.builder(
@@ -157,23 +114,19 @@ class _CalenderScreenState extends State<CalenderScreen> {
                 final todo = _todos[index];
                 return Padding(
                   padding:
-                      EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
+                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                  child: ClickableCard(
+                    onLongPress: () {
+                      setState(() {
+                        _todos.removeAt(index);
+                        _saveData();
+                      });
+                    },
                     child: ListTile(
                       title: Text(todo.title),
                       subtitle: Text(todo.date != null
                           ? 'Date: ${DateFormat('dd MMMM yyyy').format(todo.date!)}'
                           : 'No Date'),
-                      onLongPress: () {
-                        setState(() {
-                          _todos.removeAt(index);
-                          _saveData();
-                        });
-                      },
                     ),
                   ),
                 );

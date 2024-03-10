@@ -1,10 +1,3 @@
-import '../exports.dart';
-
-const primaryColor = Color.fromARGB(255, 243, 130, 33);
-const primaryColorNight = Color.fromARGB(255, 255, 186, 126);
-const surfaceColor = Color.fromARGB(255, 255, 251, 247);
-const onSurfaceColor = Color.fromARGB(255, 8, 4, 0);
-
 //Image Paths
 const lightLogoPath = 'assets/logo/light.png';
 const darkLogoPath = 'assets/logo/dark.png';

@@ -69,7 +69,7 @@ class _HomeState extends State<Home> {
               setState(() {
                 isDark = !isDark;
               });
-              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+              Provider.of<GlobalDataProvider>(context, listen: false).toggleTheme();
             },
             icon: const Icon(Icons.wb_sunny_outlined),
             selectedIcon: const Icon(Icons.brightness_2_outlined),
@@ -86,11 +86,7 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: NavigationBar(
         height: 60,
         labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-        indicatorColor: Provider.of<ThemeProvider>(context, listen: false)
-            .getNavigationBarIndicatorColor(),
-        backgroundColor: Provider.of<ThemeProvider>(context, listen: false)
-            .currentTheme
-            .primaryColor,
+        backgroundColor: ThemeUtils.nvBackgroundColor(context),
         onDestinationSelected: (int index) {
           setState(() {
             currentPageIndex = index;
